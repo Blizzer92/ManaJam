@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
 		{
 			t.Move();
 
-			yield return new WaitForSeconds(0.1f);
+			yield return new WaitForSeconds(1f);
 		}
 			
 		enemiesMoving = false;

@@ -7,6 +7,9 @@ using Random = UnityEngine.Random;
 public class Enemie : MonoBehaviour
     {
         public Rigidbody2D rb2D;
+        public BoxCollider2D boxCollider2D;
+        public LayerMask blockingLayer;
+        
         private List<Vector2> ranndomVector = new();
         private void Awake()
         {
@@ -25,7 +28,13 @@ public class Enemie : MonoBehaviour
             Vector2 start = transform.position;
             Vector2 end = start + ranndomVector[random];
         
-            StartCoroutine(SmoothMovement(end));
+            boxCollider2D.enabled = false;
+            RaycastHit2D hit = Physics2D.Linecast(start, end, blockingLayer);
+            boxCollider2D.enabled = true;
+            if (hit.transform == null)
+            {
+                StartCoroutine(SmoothMovement(end));
+            }
         }
     
         IEnumerator SmoothMovement(Vector3 end)

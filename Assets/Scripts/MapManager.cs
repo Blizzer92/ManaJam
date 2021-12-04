@@ -80,6 +80,6 @@ public class MapManager : MonoBehaviour
     {
         SetUpList();
         MapSetup();
-        AddItemOnRandomPosition(enemies, 1, 1);
+        AddItemOnRandomPosition(enemies, 3, 3);
     }
 }

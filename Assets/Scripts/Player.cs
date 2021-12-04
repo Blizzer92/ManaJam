@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb2D;
+    public BoxCollider2D boxCollider2D;
+    public LayerMask blockingLayer;
     
     private void Update()
     {
@@ -33,7 +35,14 @@ public class Player : MonoBehaviour
         Vector2 start = transform.position;
         Vector2 end = start + new Vector2(x, y);
         
-        StartCoroutine(SmoothMovement(end));
+        
+        boxCollider2D.enabled = false;
+        RaycastHit2D hit = Physics2D.Linecast(start, end, blockingLayer);
+        boxCollider2D.enabled = true;
+        if (hit.transform == null)
+        {
+            StartCoroutine(SmoothMovement(end));
+        }
 
         GameManager.instance.playerCanMove = false;
 
@@ -54,5 +63,5 @@ public class Player : MonoBehaviour
             yield return null;
         }
     }
-    
+
 }
