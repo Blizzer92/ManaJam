@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum enumGameStates
 {
@@ -18,8 +20,7 @@ public class GameManager : MonoBehaviour
 	public MapManager mapManager;
 	[HideInInspector] public bool playerCanMove = true;
 	private List<Enemy> enemies;
-	public bool enemiesMoving;
-	
+
 
 	public enumGameStates gameState = enumGameStates.Input;
 
@@ -36,12 +37,11 @@ public class GameManager : MonoBehaviour
 		enemies = new List<Enemy>();
 
 		mapManager = GetComponent<MapManager>();
-		
-		StartGame();
 	}
 
 	void StartGame()
 	{
+		enemies.Clear();
 		mapManager.Setup();
 	}
 
@@ -84,5 +84,20 @@ public class GameManager : MonoBehaviour
 	{
 		enemies.Remove(enemy);
 	}
-	
+
+	private void OnEnable()
+	{
+		SceneManager.sceneLoaded += Finish;
+	}
+
+	private void OnDisable()
+	{
+		SceneManager.sceneLoaded -= Finish;
+	}
+
+	void Finish(Scene scene, LoadSceneMode mode)
+	{
+		StartGame();
+	}
+
 }

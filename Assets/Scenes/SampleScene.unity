@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 1225140186}
   - component: {fileID: 1225140185}
   - component: {fileID: 1225140189}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,8 @@ MonoBehaviour:
   blockingLayer:
     serializedVersion: 2
     m_Bits: 64
-  Speed: 0.05
+  speed: 0.05
+  health: 1
 --- !u!50 &1225140186
 Rigidbody2D:
   serializedVersion: 4
@@ -330,8 +331,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.3131261, b: 1, a: 1}
+  m_Sprite: {fileID: -2017435797, guid: 2c9736078c38e404aaae21a79be63ec2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

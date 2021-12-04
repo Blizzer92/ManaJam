@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb2D;
@@ -87,5 +88,19 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Exit"))
+        {
+            Invoke("Restart", .5f);
+            enabled = false;
+        }
+    }
+
+    private void Restart()
+    {
+        SceneManager.LoadScene(0);
     }
 }

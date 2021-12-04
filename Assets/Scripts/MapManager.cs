@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class MapManager : MonoBehaviour
     public GameObject[] floors;
     public GameObject[] walls;
     public GameObject[] enemies;
-
+    public GameObject exit;
 
     private List<Vector2> gridPositions = new();
     private Transform map;
@@ -81,5 +82,6 @@ public class MapManager : MonoBehaviour
         SetUpList();
         MapSetup();
         AddItemOnRandomPosition(enemies, 3, 3);
+        Instantiate(exit, new Vector2(width - 1, height - 1), Quaternion.identity);
     }
 }
