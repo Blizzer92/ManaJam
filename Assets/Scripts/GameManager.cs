@@ -20,8 +20,10 @@ public class GameManager : MonoBehaviour
 	public MapManager mapManager;
 	[HideInInspector] public bool playerCanMove = true;
 	private List<Enemy> enemies;
-
-
+	private int level = -1;
+	
+	
+	public TextAsset[] levels;
 	public enumGameStates gameState = enumGameStates.Input;
 
 	void Awake()
@@ -41,8 +43,9 @@ public class GameManager : MonoBehaviour
 
 	void StartGame()
 	{
+		
 		enemies.Clear();
-		mapManager.Setup();
+		mapManager.Setup(level);
 	}
 
 	void Update()
@@ -97,6 +100,7 @@ public class GameManager : MonoBehaviour
 
 	void Finish(Scene scene, LoadSceneMode mode)
 	{
+		level++;
 		StartGame();
 	}
 

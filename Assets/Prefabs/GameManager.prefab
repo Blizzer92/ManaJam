@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapManager: {fileID: 0}
   playerCanMove: 1
+  levels:
+  - {fileID: 4900000, guid: 9fc1bf61e045b10448f147ce10ad62b2, type: 3}
+  - {fileID: 4900000, guid: fbd59cec23f747b597eb35fdbfa034ff, type: 3}
   gameState: 1
 --- !u!114 &8963962514273277915
 MonoBehaviour:
@@ -68,4 +71,5 @@ MonoBehaviour:
   - {fileID: 8975087756667153348, guid: 53b7ce0a45f824c7ea229eca0a210a7a, type: 3}
   enemies:
   - {fileID: 6531772164646871711, guid: a3ba7b5cb522f495da4053444c7d06df, type: 3}
+  player: {fileID: 4595057013536371770, guid: 05a01116f620f8941ba7e14070d39dd6, type: 3}
   exit: {fileID: 6365560518647693443, guid: 6b5b5a794c8ce4379af5fb60fa02f70a, type: 3}
