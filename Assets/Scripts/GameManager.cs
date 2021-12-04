@@ -10,21 +10,24 @@ public enum enumGameStates
     Input,    
     PlayerMoving,    
 	EnemiesMove,
-    EnemiesMoving
+    EnemiesMoving,
+    GameEnd
 }
 
 public class GameManager : MonoBehaviour
 {
 	public static GameManager instance = null;
+	public GameObject MenuScreen;
+	public Camera UICamara;
 
 	public MapManager mapManager;
 	[HideInInspector] public bool playerCanMove = true;
 	private List<Enemy> enemies;
-	private int level = -1;
+	public int level = -1;
 	
 	
 	public TextAsset[] levels;
-	public enumGameStates gameState = enumGameStates.Input;
+	public enumGameStates gameState = enumGameStates.Menu;
 
 	void Awake()
 	{
@@ -57,10 +60,22 @@ public class GameManager : MonoBehaviour
 	{
 		switch(gameState)
 		{
+			case enumGameStates.Menu:
+				if (Input.GetMouseButton(0))
+				{
+					MenuScreen.SetActive(false);
+					UICamara.enabled = false;
+					gameState = enumGameStates.Input;
+					StartGame();
+				}
+				break;
 			case enumGameStates.EnemiesMove:				
 				gameState = enumGameStates.EnemiesMoving;                  
                 StartCoroutine(MoveEnemies());                
-				break;				
+				break;
+			case enumGameStates.GameEnd:
+				//TODO: GAMEEND anzeigen Sounf abspielen usw
+			break;
 		}
 	}
 
@@ -101,7 +116,10 @@ public class GameManager : MonoBehaviour
 	void Finish(Scene scene, LoadSceneMode mode)
 	{
 		level++;
-		StartGame();
+		if (level > 0)
+		{
+			StartGame();
+		}
 	}
 
 }

@@ -94,8 +94,15 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Exit"))
         {
-            Invoke("Restart", .5f);
-            enabled = false;
+            if (GameManager.instance.level == GameManager.instance.levels.Length)
+            {
+                GameManager.instance.gameState = enumGameStates.GameEnd;
+            }
+            else
+            {
+                Invoke("Restart", .5f);
+                enabled = false;
+            }
         }
     }
 
