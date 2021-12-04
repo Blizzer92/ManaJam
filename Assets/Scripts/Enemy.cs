@@ -11,8 +11,10 @@ public class Enemy : MonoBehaviour
         public LayerMask blockingLayer;
         public float speed = 0.05f;
         public int health = 1;
+        public float chaseDistance = 3.0f;
 
         [HideInInspector] public bool isMoving;
+        private Player player;
         
         private List<Vector2> ranndomVector = new();
         private void Awake()
@@ -24,13 +26,32 @@ public class Enemy : MonoBehaviour
             ranndomVector.Add(new Vector2(0, 1));
         }
 
+        private void Start() 
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();            
+        }
+
 
         public void Move ()
-        {
-            int random = Random.Range(0, ranndomVector.Count);
+        {       
+            // chase player?
+            float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
+            if (distToPlayer > chaseDistance)
+                return;
+
+            //int random = Random.Range(0, ranndomVector.Count);
 
             Vector2 start = transform.position;
-            Vector2 end = start + ranndomVector[random];
+            Vector2 end; // = start + ranndomVector[random];
+
+            Vector2 target = player.transform.position - transform.position;
+            if (target.x != 0.0f)
+                target.x /= Mathf.Abs(target.x);
+            if (target.y != 0.0f)
+                target.y /= Mathf.Abs(target.y);
+            
+            end = start + target;
+            
         
             boxCollider2D.enabled = false;
             RaycastHit2D hit = Physics2D.Linecast(start, end, blockingLayer);
@@ -50,17 +71,14 @@ public class Enemy : MonoBehaviour
     
         IEnumerator SmoothMovement(Vector3 end)
         {
-            isMoving = true;
-            float remaining = (transform.position - end).sqrMagnitude;
+            isMoving = true;            
 
-            while (remaining > float.Epsilon)
+            while (Vector3.Distance(transform.position, end) > float.Epsilon)            
             {
                 Vector3 newPosition = Vector3.MoveTowards(rb2D.position, end, 1f / speed * Time.deltaTime);
 
                 rb2D.MovePosition(newPosition);
-
-                remaining = (transform.position - end).sqrMagnitude;
-
+                
                 yield return null;                
             }     
             isMoving = false;       
