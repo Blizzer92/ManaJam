@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapManager: {fileID: 0}
   playerCanMove: 1
+  moveSpeed: 0.01
 --- !u!114 &8963962514273277915
 MonoBehaviour:
   m_ObjectHideFlags: 0

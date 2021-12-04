@@ -7,24 +7,33 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb2D;
     public BoxCollider2D boxCollider2D;
     public LayerMask blockingLayer;
+    public float speed = 0.05f;
+    public int health = 1;
     
     private void Update()
-    {
-        if (!GameManager.instance.playerCanMove) {
-            return;
-        }
+    {                
+        if (GameManager.instance.gameState == enumGameStates.Input)
+        {
+            PlayerInput();
+        }        
+    }
 
+    void PlayerInput()
+    {
         int horizontal = 0;
         int vertical = 0;
 
-        horizontal = (int) Input.GetAxisRaw("Horizontal");
-        vertical = (int) Input.GetAxisRaw("Vertical");
+        horizontal = (int)Input.GetAxisRaw("Horizontal");
+        vertical = (int)Input.GetAxisRaw("Vertical");
 
-        if (horizontal != 0) {
+        if (horizontal != 0)
+        {
             vertical = 0;
         }
 
-        if (horizontal != 0 || vertical != 0) {
+        if (horizontal != 0 || vertical != 0)
+        {
+            GameManager.instance.gameState = enumGameStates.PlayerMoving;
             Move(horizontal, vertical);
         }
     }
@@ -39,13 +48,18 @@ public class Player : MonoBehaviour
         boxCollider2D.enabled = false;
         RaycastHit2D hit = Physics2D.Linecast(start, end, blockingLayer);
         boxCollider2D.enabled = true;
-        if (hit.transform == null)
+        if (hit.transform != null)
+        {
+            Enemy enemy = hit.transform.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.DamageEnemy(1);
+                GameManager.instance.gameState = enumGameStates.EnemiesMove;
+            }
+        } else
         {
             StartCoroutine(SmoothMovement(end));
-        }
-
-        GameManager.instance.playerCanMove = false;
-
+        }        
     }
     
     IEnumerator SmoothMovement(Vector3 end)
@@ -54,7 +68,7 @@ public class Player : MonoBehaviour
 
         while (remaining > float.Epsilon)
         {
-            Vector3 newPosition = Vector3.MoveTowards(rb2D.position, end, 1f / .1f * Time.deltaTime);
+            Vector3 newPosition = Vector3.MoveTowards(rb2D.position, end, 1f / speed * Time.deltaTime);
 
             rb2D.MovePosition(newPosition);
 
@@ -62,6 +76,16 @@ public class Player : MonoBehaviour
 
             yield return null;
         }
+        
+        GameManager.instance.gameState = enumGameStates.EnemiesMove;
     }
 
+    public void DamagePlayer(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

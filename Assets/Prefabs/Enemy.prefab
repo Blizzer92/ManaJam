@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 6531772164646871705}
   - component: {fileID: 6531772164646871710}
   - component: {fileID: 4781238693595666009}
-  m_Layer: 0
-  m_Name: Enemie
+  m_Layer: 6
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6531772164646871711}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fef0b8a01b994666b68bf66f8f339c54, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f96c56daf4ab4444aec8d640bdc970d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb2D: {fileID: 6531772164646871705}
@@ -125,6 +125,9 @@ MonoBehaviour:
   blockingLayer:
     serializedVersion: 2
     m_Bits: 64
+  speed: 0.05
+  health: 1
+  isMoving: 0
 --- !u!61 &4781238693595666009
 BoxCollider2D:
   m_ObjectHideFlags: 0

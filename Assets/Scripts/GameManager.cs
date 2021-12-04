@@ -2,15 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum enumGameStates
+{
+    Menu,
+    Input,    
+    PlayerMoving,    
+	EnemiesMove,
+    EnemiesMoving
+}
+
 public class GameManager : MonoBehaviour
 {
 	public static GameManager instance = null;
 
 	public MapManager mapManager;
 	[HideInInspector] public bool playerCanMove = true;
-	private List<Enemie> enemies;
-	private bool enemiesMoving;
+	private List<Enemy> enemies;
+	public bool enemiesMoving;
+	
 
+	public enumGameStates gameState = enumGameStates.Input;
 
 	void Awake()
 	{
@@ -22,7 +33,7 @@ public class GameManager : MonoBehaviour
 
 		DontDestroyOnLoad(gameObject);
 
-		enemies = new List<Enemie>();
+		enemies = new List<Enemy>();
 
 		mapManager = GetComponent<MapManager>();
 		
@@ -35,39 +46,43 @@ public class GameManager : MonoBehaviour
 	}
 
 	void Update()
-	{
-		if (playerCanMove || enemiesMoving) {
-			return;
-		}
+	{		
+		UpdateStateMachine();
+	}
 
-		StartCoroutine(MoveEnemies());
+	void UpdateStateMachine()
+	{
+		switch(gameState)
+		{
+			case enumGameStates.EnemiesMove:				
+				gameState = enumGameStates.EnemiesMoving;                  
+                StartCoroutine(MoveEnemies());                
+				break;				
+		}
 	}
 
 	IEnumerator MoveEnemies()
-	{
-		enemiesMoving = true;
-
-		yield return new WaitForSeconds(.1f);
-
-		if (enemies.Count == 0) {
-			yield return new WaitForSeconds(.1f);
-		}
-
-		foreach (Enemie t in enemies)
+	{				
+		foreach (Enemy t in enemies)
 		{
 			t.Move();
-
-			yield return new WaitForSeconds(1f);
+			while(t.isMoving)
+			{
+				yield return null;
+			}			
 		}
-			
-		enemiesMoving = false;
-
-		playerCanMove = true;
+					
+		gameState = enumGameStates.Input;
 	}
 
-	public void AddEnemieToList(Enemie enemie)
+	public void AddEnemieToList(Enemy enemy)
 	{
-		enemies.Add(enemie);
+		enemies.Add(enemy);
+	}
+
+	public void RemoveEnemyFromList(Enemy enemy)
+	{
+		enemies.Remove(enemy);
 	}
 	
 }
