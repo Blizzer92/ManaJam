@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 	public MapManager mapManager;
 	[HideInInspector] public bool playerCanMove = true;
 	private List<Enemy> enemies;
-	public bool enemiesMoving;
+	//public bool enemiesMoving;
 	
 
 	public enumGameStates gameState = enumGameStates.Input;

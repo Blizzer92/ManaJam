@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 1225140189}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,7 +267,8 @@ MonoBehaviour:
   blockingLayer:
     serializedVersion: 2
     m_Bits: 64
-  Speed: 0.05
+  speed: 0.05
+  health: 1
 --- !u!50 &1225140186
 Rigidbody2D:
   serializedVersion: 4
