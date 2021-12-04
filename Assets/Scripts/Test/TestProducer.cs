@@ -10,6 +10,7 @@ public class TestProducer : MonoBehaviour
         if (Input.GetKeyDown("t"))
         {
             EventManager.TriggerEvent("TestEvent", new Dictionary<string, object> { {"Value1", 42} });
+            //EventManager.TriggerEvent("PlaySFX", new Dictionary<string, object> { { "SFXsName", "Cricket" } });
         }        
     }
 }
