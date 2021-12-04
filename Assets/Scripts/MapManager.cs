@@ -81,7 +81,7 @@ public class MapManager : MonoBehaviour
     {
         SetUpList();
         MapSetup();
-        AddItemOnRandomPosition(enemies, 3, 3);
+        AddItemOnRandomPosition(enemies, 20, 20);
         Instantiate(exit, new Vector2(width - 1, height - 1), Quaternion.identity);
     }
 }
