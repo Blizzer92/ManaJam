@@ -75,6 +75,8 @@ public class Enemy : MonoBehaviour
                 if (player != null)
                 {
                     player.DamagePlayer(1);
+                    //Debug.Log("DamagePlayer by: " + gameObject.GetInstanceID());
+                    isMoving = false;
                 }
             } else
             {

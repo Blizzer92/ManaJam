@@ -85,7 +85,8 @@ public class GameManager : MonoBehaviour
 				}
 				break;
 			case enumGameStates.EnemiesMove:				
-				gameState = enumGameStates.EnemiesMoving;                  
+				gameState = enumGameStates.EnemiesMoving;    
+				Debug.Log("MoveEnemies");
                 StartCoroutine(MoveEnemies());                
 				break;
 			case enumGameStates.GameEnd:
@@ -93,9 +94,9 @@ public class GameManager : MonoBehaviour
 			break;
 		}
 	}
-
+	
 	IEnumerator MoveEnemies()
-	{				
+	{						
 		foreach (Enemy t in enemies)
 		{
 			t.Move();
