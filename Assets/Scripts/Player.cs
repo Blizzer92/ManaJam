@@ -51,8 +51,7 @@ public class Player : MonoBehaviour
             else if (vertical < 0)
                 movement = 3;
             else if (horizontal < 0)
-                movement = 4;
-            Debug.Log("movement = " + movement);
+                movement = 4;            
 
             animator.SetInteger("movement", movement);
 
