@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
+
+
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb2D;
@@ -12,6 +15,7 @@ public class Player : MonoBehaviour
     public int health = 1;
 
     private Animator animator;
+    private int maxMovementSounds = 3;
 
     private void Start()
     {
@@ -51,8 +55,7 @@ public class Player : MonoBehaviour
             else if (vertical < 0)
                 movement = 3;
             else if (horizontal < 0)
-                movement = 4;
-            Debug.Log("movement = " + movement);
+                movement = 4;            
 
             animator.SetInteger("movement", movement);
 
@@ -63,6 +66,8 @@ public class Player : MonoBehaviour
     
     void Move (int x, int y)
     {
+        PlayMovementSound();
+
         Vector2 start = transform.position;
         Vector2 end = start + new Vector2(x, y);
         
@@ -113,10 +118,11 @@ public class Player : MonoBehaviour
 
     public void DamagePlayer(int damage)
     {
+        AudioManager.instance.PlaySFX("PlayerDamaged1");
         health -= damage;
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 2.0f);
         }
     }
 
@@ -139,5 +145,12 @@ public class Player : MonoBehaviour
     private void Restart()
     {
         SceneManager.LoadScene(0);
+    }
+
+    private void PlayMovementSound()
+    {
+        int idx = Random.Range(0, maxMovementSounds);
+        string sfxName = "PlayerMove" + (idx+1).ToString();
+        AudioManager.instance.PlaySFX(sfxName);
     }
 }

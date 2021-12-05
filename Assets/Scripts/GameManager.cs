@@ -23,8 +23,7 @@ public class GameManager : MonoBehaviour
 	public Button startGameBT;
 
 	public MapManager mapManager;
-	[HideInInspector] public bool playerCanMove = true;
-	[HideInInspector] public Plane[] cameraPlanes;
+	[HideInInspector] public bool playerCanMove = true;	
 	private List<Enemy> enemies;
 	public int level = -1;
 
@@ -61,8 +60,11 @@ public class GameManager : MonoBehaviour
 	
 	void StartGame()
 	{		
+		AudioManager.instance.StopMusic();
 		enemies.Clear();
 		mapManager.Setup(level);
+		AudioManager.instance.PlayMusic("Game");
+		AudioManager.instance.SetMusicVolume(0.5f);
 	}
 
 	private void Start() 
@@ -72,15 +74,12 @@ public class GameManager : MonoBehaviour
         if (go != null)
             mainCamera = go.GetComponent<Camera>();
         else
-            mainCamera = null;		
+            mainCamera = null;
+        AudioManager.instance.PlayMusic("StartMenu");		
 	}
 
 	void Update()
-	{
-        if (mainCamera != null)
-        {
-            cameraPlanes = GeometryUtility.CalculateFrustumPlanes(mainCamera);            
-        }
+	{        
         UpdateStateMachine();
 	}
 

@@ -128,7 +128,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   speed: 5
-  health: 1
+  health: 5
 --- !u!61 &4595057013536371775
 BoxCollider2D:
   m_ObjectHideFlags: 0
