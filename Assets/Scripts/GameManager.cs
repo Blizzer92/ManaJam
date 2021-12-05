@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
 		LifeUI.SetActive(true);
 		enemies.Clear();
 		mapManager.Setup(level);
+		ChangeState(enumGameStates.Input);
 		AudioManager.instance.PlayMusic("Game");
 		AudioManager.instance.SetMusicVolume(0.5f);
 	}
