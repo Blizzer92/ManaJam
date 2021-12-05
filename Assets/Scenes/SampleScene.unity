@@ -1229,6 +1229,10 @@ MonoBehaviour:
     AudioClip: {fileID: 8300000, guid: 1b585c199c54df34f97d0ca5a7ede76f, type: 3}
   - SoundName: EnemyDamaged1
     AudioClip: {fileID: 8300000, guid: 31d3c6243038c2240a97d2ae3a3905d3, type: 3}
+  - SoundName: PlayerHit
+    AudioClip: {fileID: 8300000, guid: f3ed122766e72d74dade61284af5089a, type: 3}
+  - SoundName: EnemyHit
+    AudioClip: {fileID: 8300000, guid: 96dac2a89b992c042b00aad41defb5d1, type: 3}
   music:
   - SoundName: StartMenu
     AudioClip: {fileID: 8300000, guid: 1d8c0cfccfec658448a96fe569725ddf, type: 3}

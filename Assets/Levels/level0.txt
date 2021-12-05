@@ -1,0 +1,15 @@
+r-----------l
+r___________l
+r...........l
+r.ac.2----4.l
+r.bd.L____R.2------l
+r....l    r.L______l
+r--4.l    r........l
+r__R.l    r.2----4.l
+   r.l    rXL____R.l
+   r.l    r-l    r.l
+   rXl    r_l    rBl
+   r.l           r-l
+   rPl           r_l
+   r-l
+   r_l
