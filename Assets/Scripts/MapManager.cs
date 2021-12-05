@@ -145,15 +145,18 @@ public class MapManager : MonoBehaviour
                         break;
                     case 'P':
                         toInstantiate = floor;
-                        Instantiate(player, new Vector3(x, y, 0f), Quaternion.identity);
+                        GameObject instance1 = Instantiate(player, new Vector3(x, y, 0f), Quaternion.identity);
+                        instance1.transform.SetParent(map);
                         break;
                     case 'B':
                         toInstantiate = floor;
-                        Instantiate(exit, new Vector3(x, y, 0f), Quaternion.identity);
+                        GameObject instance2 = Instantiate(exit, new Vector3(x, y, 0f), Quaternion.identity);
+                        instance2.transform.SetParent(map);
                         break;
                     case 'X':
                         toInstantiate = floor;
-                        Instantiate(enemies, new Vector3(x, y, 0f), Quaternion.identity);
+                        GameObject instance3 = Instantiate(enemies, new Vector3(x, y, 0f), Quaternion.identity);
+                        instance3.transform.SetParent(map);
                         break;
                 }
 

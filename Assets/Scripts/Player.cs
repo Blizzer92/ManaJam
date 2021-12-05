@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -12,13 +13,16 @@ public class Player : MonoBehaviour
     public BoxCollider2D boxCollider2D;
     public LayerMask blockingLayer;
     public float speed = 0.05f;
-    public int health = 1;
-
+    public float maxHealth = 3;
+    public float health = 1;
+    
     private Animator animator;
     private int maxMovementSounds = 3;
 
     private void Start()
     {
+        health = maxHealth;
+        GameManager.instance.healthBar.Set(1);
         animator = GetComponent<Animator>();
     }
 
@@ -120,6 +124,7 @@ public class Player : MonoBehaviour
     {
         AudioManager.instance.PlaySFX("PlayerDamaged1");
         health -= damage;
+        GameManager.instance.healthBar.Set(health / maxHealth);
         if (health <= 0)
         {
             Destroy(gameObject, 2.0f);
@@ -136,15 +141,15 @@ public class Player : MonoBehaviour
             }
             else
             {
-                Invoke("Restart", .5f);
-                enabled = false;
+                Restart();
             }
         }
     }
 
     private void Restart()
     {
-        SceneManager.LoadScene(0);
+        GameManager.instance.StartGame();
+        Destroy(GameObject.Find("Map"));
     }
 
     private void PlayMovementSound()
