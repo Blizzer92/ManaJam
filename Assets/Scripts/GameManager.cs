@@ -7,11 +7,13 @@ using UnityEngine.UI;
 
 public enum enumGameStates
 {
+	None,
     Menu,
     Input,    
     PlayerMoving,    
 	EnemiesMove,
     EnemiesMoving,
+	WaitRound,
     GameEnd
 }
 
@@ -28,11 +30,14 @@ public class GameManager : MonoBehaviour
 	public int level = -1;
 
 	private Camera mainCamera;
-
+	
+	public float waitRoundTimeMax = 0.5f;
+	private float waitRoundTime;
 	
 	
 	public TextAsset[] levels;
-	public enumGameStates gameState = enumGameStates.Menu;
+	[SerializeField] private enumGameStates gameState = enumGameStates.Menu;
+	[SerializeField] private enumGameStates prevGameState = enumGameStates.None;
 
 	void Awake()
 	{
@@ -75,7 +80,9 @@ public class GameManager : MonoBehaviour
             mainCamera = go.GetComponent<Camera>();
         else
             mainCamera = null;
-        AudioManager.instance.PlayMusic("StartMenu");		
+        AudioManager.instance.PlayMusic("StartMenu");	
+				
+		waitRoundTime = waitRoundTimeMax;			
 	}
 
 	void Update()
@@ -88,18 +95,40 @@ public class GameManager : MonoBehaviour
 		switch(gameState)
 		{
 			case enumGameStates.EnemiesMove:				
-				gameState = enumGameStates.EnemiesMoving;    
-				Debug.Log("MoveEnemies");
+				ChangeState(enumGameStates.EnemiesMoving);
+				Debug.Log("StartCo MoveEnemies");
                 StartCoroutine(MoveEnemies());                
 				break;
 			case enumGameStates.GameEnd:
 				//TODO: GAMEEND anzeigen Sounf abspielen usw
-			break;
+				break;
+			case enumGameStates.WaitRound:				
+				EventManager.TriggerEvent("PlayerWaitIcon", new Dictionary<string, object> {{"enable", true}});
+				waitRoundTime -= Time.deltaTime;
+				if (waitRoundTime <= 0f)
+				{
+					ChangeState(enumGameStates.Input);
+					waitRoundTime = waitRoundTimeMax;
+                    EventManager.TriggerEvent("PlayerWaitIcon", new Dictionary<string, object> { { "enable", false } });
+				}
+				break;
 		}
+	}
+
+	public void ChangeState(enumGameStates newState)  
+	{
+		prevGameState = gameState;
+		gameState = newState;	
+		Debug.Log("Change state: " + prevGameState + " -> " + gameState);
+	}
+
+	public enumGameStates GetState()
+	{
+		return gameState;
 	}
 	
 	IEnumerator MoveEnemies()
-	{						
+	{			
 		foreach (Enemy t in enemies)
 		{
 			t.Move();
@@ -109,7 +138,7 @@ public class GameManager : MonoBehaviour
 			}			
 		}
 					
-		gameState = enumGameStates.Input;
+		ChangeState(enumGameStates.WaitRound);
 	}
 
 	public void AddEnemieToList(Enemy enemy)
