@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public float speed = 0.05f;
     public float maxHealth = 3;
     public float health = 1;
-    
+    public Transform WaitIcon;
     private Animator animator;
     private int maxMovementSounds = 3;
 
@@ -24,11 +24,12 @@ public class Player : MonoBehaviour
         health = maxHealth;
         GameManager.instance.healthBar.Set(1);
         animator = GetComponent<Animator>();
+        EventManager.StartListening("PlayerWaitIcon", OnPlayerWaitIcon);
     }
 
     private void Update()
     {                
-        if (GameManager.instance.gameState == enumGameStates.Input)
+        if (GameManager.instance.GetState() == enumGameStates.Input)
         {
             PlayerInput();
         }        
@@ -48,8 +49,8 @@ public class Player : MonoBehaviour
         }
 
         if (horizontal != 0 || vertical != 0)
-        {
-            GameManager.instance.gameState = enumGameStates.PlayerMoving;
+        {            
+            GameManager.instance.ChangeState(enumGameStates.PlayerMoving);
             // Set Animation
             int movement = 0;
             if (vertical > 0)
@@ -69,9 +70,7 @@ public class Player : MonoBehaviour
     
     
     void Move (int x, int y)
-    {
-        PlayMovementSound();
-
+    {                
         Vector2 start = transform.position;
         Vector2 end = start + new Vector2(x, y);
         
@@ -86,15 +85,15 @@ public class Player : MonoBehaviour
             if (enemy != null)
             {
                 enemy.DamageEnemy(1);
-                GameManager.instance.gameState = enumGameStates.EnemiesMove;
-            } else
-            {
-                GameManager.instance.gameState = enumGameStates.EnemiesMove;
-                animator.SetInteger("movement", 0);
+                GameManager.instance.ChangeState(enumGameStates.EnemiesMove);
             }
+            
+            GameManager.instance.ChangeState(enumGameStates.EnemiesMove);
+            animator.SetInteger("movement", 0);
         } else
         {
-            StartCoroutine(SmoothMovement(end));
+            PlayMovementSound();      
+            StartCoroutine(SmoothMovement(end));            
         }        
     }
     
@@ -115,8 +114,8 @@ public class Player : MonoBehaviour
 
             yield return null;
         }
-        
-        GameManager.instance.gameState = enumGameStates.EnemiesMove;
+                                
+        GameManager.instance.ChangeState(enumGameStates.EnemiesMove);        
         animator.SetInteger("movement", 0);
     }
 
@@ -137,7 +136,7 @@ public class Player : MonoBehaviour
         {
             if (GameManager.instance.level == GameManager.instance.levels.Length)
             {
-                GameManager.instance.gameState = enumGameStates.GameEnd;
+                GameManager.instance.ChangeState(enumGameStates.GameEnd);
             }
             else
             {
@@ -157,5 +156,18 @@ public class Player : MonoBehaviour
         int idx = Random.Range(0, maxMovementSounds);
         string sfxName = "PlayerMove" + (idx+1).ToString();
         AudioManager.instance.PlaySFX(sfxName);
+    }
+
+    void OnPlayerWaitIcon(Dictionary<string, object> message)
+    {        
+        bool enable = (bool)message["enable"];        
+        
+        if (enable)
+        {            
+            WaitIcon.gameObject.SetActive(true);            
+        } else
+        {
+            WaitIcon.gameObject.SetActive(false);
+        }
     }
 }
