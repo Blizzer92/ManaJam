@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -21,9 +22,13 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager instance = null;
 	public GameObject MenuScreen;
+	public GameObject TextScreen;
+	public GameObject LifeUI;
 	public Camera UICamara;
 	public Button startGameBT;
-
+	public Text intro;
+	public Bar healthBar;
+	
 	public MapManager mapManager;
 	[HideInInspector] public bool playerCanMove = true;	
 	private List<Enemy> enemies;
@@ -33,7 +38,6 @@ public class GameManager : MonoBehaviour
 	
 	public float waitRoundTimeMax = 0.5f;
 	private float waitRoundTime;
-	
 	
 	public TextAsset[] levels;
 	[SerializeField] private enumGameStates gameState = enumGameStates.Menu;
@@ -57,22 +61,45 @@ public class GameManager : MonoBehaviour
 
 	public void StartGameClick()
 	{
+		TextScreen.SetActive(true);
+		Intro();
 		MenuScreen.SetActive(false);
-		UICamara.enabled = false;
+
+	}
+
+	public void AfterIntro()
+	{
+		TextScreen.SetActive(false);
+		UICamara.gameObject.SetActive(false);
 		gameState = enumGameStates.Input;
 		StartGame();
 	}
 	
-	void StartGame()
-	{		
+	public void StartGame()
+	{
+		level++;
 		AudioManager.instance.StopMusic();
+		LifeUI.SetActive(true);
 		enemies.Clear();
 		mapManager.Setup(level);
 		AudioManager.instance.PlayMusic("Game");
 		AudioManager.instance.SetMusicVolume(0.5f);
 	}
 
-	private void Start() 
+	public void Intro()
+	{
+		Sequence introSequence = DOTween.Sequence();
+		introSequence.Append(intro.DOText("Es war einmal ...", 1f));
+		introSequence.AppendInterval(1f);
+		introSequence.Append(intro.DOText("die kranke kleine Schwester von Kadse wünschte sich noch einmal, ein Märchen zu hören.", 1f));
+		introSequence.AppendInterval(1f);
+		introSequence.Append(intro.DOText("Alle Märchen wurden von den Katzen geklaut.", 1f));
+		introSequence.AppendInterval(1f);
+		introSequence.Append(intro.DOText("Um noch einmal ein Märchen hören zu können, muss Kadse losziehen ins Katzen-*Ort*, wo *das Märchen* in 5 Teile aufgeteilt und versteckt wurden.", 1f));
+		introSequence.AppendInterval(1f).OnComplete(() => { AfterIntro(); });
+	}
+	
+	private void Start()
 	{
 		startGameBT.onClick.AddListener(StartGameClick);
         GameObject go = GameObject.FindGameObjectWithTag("MainCamera");
@@ -149,25 +176,6 @@ public class GameManager : MonoBehaviour
 	public void RemoveEnemyFromList(Enemy enemy)
 	{
 		enemies.Remove(enemy);
-	}
-
-	private void OnEnable()
-	{
-		SceneManager.sceneLoaded += Finish;
-	}
-
-	private void OnDisable()
-	{
-		SceneManager.sceneLoaded -= Finish;
-	}
-
-	void Finish(Scene scene, LoadSceneMode mode)
-	{
-		level++;
-		if (level > 0)
-		{
-			StartGame();
-		}
 	}
 
 }
