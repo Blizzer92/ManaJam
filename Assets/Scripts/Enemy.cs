@@ -14,7 +14,8 @@ public class Enemy : MonoBehaviour
         public float chaseDistance = 3.0f;
 
         [HideInInspector] public bool isMoving;
-        private Player player;
+        private Player player;        
+        
         
         private List<Vector2> ranndomVector = new();
         private void Awake()
@@ -33,26 +34,40 @@ public class Enemy : MonoBehaviour
 
 
         public void Move ()
-        {       
-            // chase player?
-            float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
-            if (distToPlayer > chaseDistance)
-                return;
-
-            //int random = Random.Range(0, ranndomVector.Count);
+        {
+            bool enemyVisible = true;
 
             Vector2 start = transform.position;
             Vector2 end; // = start + ranndomVector[random];
 
-            Vector2 target = player.transform.position - transform.position;
-            if (target.x != 0.0f)
-                target.x /= Mathf.Abs(target.x);
-            if (target.y != 0.0f)
-                target.y /= Mathf.Abs(target.y);
-            
-            end = start + target;
-            
-        
+            // chase player?
+            float distToPlayer = Vector3.Distance(transform.position, player.transform.position);
+            if (distToPlayer > chaseDistance)
+            {
+                int random = Random.Range(0, ranndomVector.Count);
+                end = start + ranndomVector[random];
+                // can enemy be seen by camera? if not then move enemy instant
+                enemyVisible = GeometryUtility.TestPlanesAABB(GameManager.instance.cameraPlanes, boxCollider2D.bounds);
+            } else
+            {
+                Vector2 target = player.transform.position - transform.position;
+                if (target.x != 0.0f)
+                    target.x /= Mathf.Abs(target.x);
+                if (target.y != 0.0f)
+                    target.y /= Mathf.Abs(target.y);
+                
+                // no diagnoal move allowed. randomly move vertical or horizontal
+                if (target.x != 0f && target.y != 0f)
+                {
+                    if (Random.Range(0, 2) == 1)
+                        target.x = 0f;
+                    else
+                        target.y = 0f;
+                }
+
+                end = start + target;
+            }
+                                                        
             boxCollider2D.enabled = false;
             RaycastHit2D hit = Physics2D.Linecast(start, end, blockingLayer);
             boxCollider2D.enabled = true;
@@ -65,7 +80,13 @@ public class Enemy : MonoBehaviour
                 }
             } else
             {
-                StartCoroutine(SmoothMovement(end));                
+                if (enemyVisible)
+                {
+                    StartCoroutine(SmoothMovement(end));                
+                } else
+                {
+                    rb2D.MovePosition(end);
+                }
             }
         }
     
@@ -75,9 +96,10 @@ public class Enemy : MonoBehaviour
 
             while (Vector3.Distance(transform.position, end) > float.Epsilon)            
             {
-                Vector3 newPosition = Vector3.MoveTowards(rb2D.position, end, 1f / speed * Time.deltaTime);
+                Vector3 newPosition = Vector3.MoveTowards(rb2D.position, end, speed * Time.deltaTime);
 
-                rb2D.MovePosition(newPosition);
+                //rb2D.MovePosition(newPosition);
+                transform.position = newPosition;
                 
                 yield return null;                
             }     

@@ -22,8 +22,12 @@ public class GameManager : MonoBehaviour
 
 	public MapManager mapManager;
 	[HideInInspector] public bool playerCanMove = true;
+	[HideInInspector] public Plane[] cameraPlanes;
 	private List<Enemy> enemies;
 	public int level = -1;
+
+	private Camera mainCamera;
+
 	
 	
 	public TextAsset[] levels;
@@ -45,15 +49,27 @@ public class GameManager : MonoBehaviour
 	}
 
 	void StartGame()
-	{
-		
+	{		
 		enemies.Clear();
 		mapManager.Setup(level);
 	}
 
+	private void Start() 
+	{
+        GameObject go = GameObject.FindGameObjectWithTag("MainCamera");
+        if (go != null)
+            mainCamera = go.GetComponent<Camera>();
+        else
+            mainCamera = null;		
+	}
+
 	void Update()
-	{		
-		UpdateStateMachine();
+	{
+        if (mainCamera != null)
+        {
+            cameraPlanes = GeometryUtility.CalculateFrustumPlanes(mainCamera);            
+        }
+        UpdateStateMachine();
 	}
 
 	void UpdateStateMachine()

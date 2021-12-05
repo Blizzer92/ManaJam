@@ -10,7 +10,14 @@ public class Player : MonoBehaviour
     public LayerMask blockingLayer;
     public float speed = 0.05f;
     public int health = 1;
-    
+
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     private void Update()
     {                
         if (GameManager.instance.gameState == enumGameStates.Input)
@@ -35,6 +42,20 @@ public class Player : MonoBehaviour
         if (horizontal != 0 || vertical != 0)
         {
             GameManager.instance.gameState = enumGameStates.PlayerMoving;
+            // Set Animation
+            int movement = 0;
+            if (vertical > 0)
+                movement = 1;
+            else if (horizontal > 0)
+                movement = 2;
+            else if (vertical < 0)
+                movement = 3;
+            else if (horizontal < 0)
+                movement = 4;
+            Debug.Log("movement = " + movement);
+
+            animator.SetInteger("movement", movement);
+
             Move(horizontal, vertical);
         }
     }
@@ -56,6 +77,10 @@ public class Player : MonoBehaviour
             {
                 enemy.DamageEnemy(1);
                 GameManager.instance.gameState = enumGameStates.EnemiesMove;
+            } else
+            {
+                GameManager.instance.gameState = enumGameStates.EnemiesMove;
+                animator.SetInteger("movement", 0);
             }
         } else
         {
@@ -67,11 +92,14 @@ public class Player : MonoBehaviour
     {
         float remaining = (transform.position - end).sqrMagnitude;
 
-        while (remaining > float.Epsilon)
-        {
-            Vector3 newPosition = Vector3.MoveTowards(rb2D.position, end, 1f / speed * Time.deltaTime);
+        yield return new WaitForSeconds(0.1f);
 
-            rb2D.MovePosition(newPosition);
+        while (remaining > float.Epsilon)
+        {            
+            Vector3 newPosition = Vector3.MoveTowards(rb2D.position, end, speed * Time.deltaTime);
+
+            //rb2D.MovePosition(newPosition);
+            transform.position = newPosition;
 
             remaining = (transform.position - end).sqrMagnitude;
 
@@ -79,6 +107,7 @@ public class Player : MonoBehaviour
         }
         
         GameManager.instance.gameState = enumGameStates.EnemiesMove;
+        animator.SetInteger("movement", 0);
     }
 
     public void DamagePlayer(int damage)

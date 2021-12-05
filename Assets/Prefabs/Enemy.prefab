@@ -125,8 +125,9 @@ MonoBehaviour:
   blockingLayer:
     serializedVersion: 2
     m_Bits: 64
-  speed: 0.05
+  speed: 5
   health: 1
+  chaseDistance: 3
   isMoving: 0
 --- !u!61 &4781238693595666009
 BoxCollider2D:
