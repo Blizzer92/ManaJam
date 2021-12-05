@@ -62,8 +62,7 @@ public class GameManager : MonoBehaviour
 	public void StartGameClick()
 	{
 		TextScreen.SetActive(true);
-		//Intro();
-		AfterIntro();
+		Intro();		
 		MenuScreen.SetActive(false);
 
 	}
