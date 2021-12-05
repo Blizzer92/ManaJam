@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
 
             while (Vector3.Distance(transform.position, end) > float.Epsilon)            
             {
-                Vector3 newPosition = Vector3.MoveTowards(rb2D.position, end, 1f / speed * Time.deltaTime);
+                Vector2 newPosition = Vector2.MoveTowards(rb2D.position, end, 1f / speed * Time.deltaTime);
 
                 rb2D.MovePosition(newPosition);
                 
