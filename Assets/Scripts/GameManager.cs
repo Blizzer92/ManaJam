@@ -24,10 +24,13 @@ public class GameManager : MonoBehaviour
 	public GameObject MenuScreen;
 	public GameObject TextScreen;
 	public GameObject LifeUI;
+	public GameObject OutroScreen;
 	public Camera UICamara;
 	public Button startGameBT;
 	public Text intro;
+	public Text outro;
 	public Bar healthBar;
+	public float textSpeed = 1f;
 	
 	public MapManager mapManager;
 	[HideInInspector] public bool playerCanMove = true;	
@@ -51,7 +54,7 @@ public class GameManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 
-		DontDestroyOnLoad(gameObject);
+		//DontDestroyOnLoad(gameObject);
 
 		enemies = new List<Enemy>();
 
@@ -75,6 +78,12 @@ public class GameManager : MonoBehaviour
 		StartGame();
 	}
 	
+	public void AfterOutro()
+	{
+		SceneManager.LoadScene(0);
+
+	}
+	
 	public void StartGame()
 	{
 		level++;
@@ -89,15 +98,28 @@ public class GameManager : MonoBehaviour
 
 	public void Intro()
 	{
+		Debug.Log("Intro Start");
 		Sequence introSequence = DOTween.Sequence();
-		introSequence.Append(intro.DOText("Es war einmal ...", 1f));
-		introSequence.AppendInterval(1f);
-		introSequence.Append(intro.DOText("die kranke kleine Schwester von Kadse wünschte sich noch einmal, ein Märchen zu hören.", 1f));
-		introSequence.AppendInterval(1f);
-		introSequence.Append(intro.DOText("Alle Märchen wurden von den Katzen geklaut.", 1f));
-		introSequence.AppendInterval(1f);
-		introSequence.Append(intro.DOText("Um noch einmal ein Märchen hören zu können, muss Kadse losziehen ins Katzen-*Ort*, wo *das Märchen* in 5 Teile aufgeteilt und versteckt wurden.", 1f));
-		introSequence.AppendInterval(1f).OnComplete(() => { AfterIntro(); });
+		introSequence.Append(intro.DOText("Es war einmal eine Welt, in der die Katzen alle Märchen stahlen und zerstörten.", textSpeed));
+		introSequence.AppendInterval(textSpeed);
+		introSequence.Append(intro.DOText("Ein letztes war verschont geblieben.", textSpeed));
+		introSequence.AppendInterval(textSpeed);
+		introSequence.Append(intro.DOText("Jedoch hielten sie dieses versteckt, in 5 Teilen an 5 Orten.", textSpeed));
+		introSequence.AppendInterval(textSpeed);
+		introSequence.Append(intro.DOText("Zieh' los und finde alle 5 Teile! Aber gib Acht. Katzen sind gefährlich.", textSpeed));
+		introSequence.AppendInterval(textSpeed).OnComplete(() => { AfterIntro(); });
+		Debug.Log("Intro Ende");
+	}
+	
+	public void Outro()
+	{
+		Sequence introSequence = DOTween.Sequence();
+		introSequence.Append(outro.DOText("Geschwind kehrte die kleine Ratte nach Haus' zurück und erzählt der todkranken Schwester das letzte Märchen.", textSpeed));
+		introSequence.AppendInterval(textSpeed);
+		introSequence.Append(outro.DOText("Es war ein schöner Moment.", textSpeed));
+		introSequence.AppendInterval(textSpeed);
+		introSequence.Append(outro.DOText("Und wenn die kleine Ratte nicht gestorben ist, dann schwelgt sie noch heute in dieser wärmenden Erinnerung.", textSpeed));
+		introSequence.AppendInterval(textSpeed).OnComplete(() => { AfterOutro(); });
 	}
 	
 	private void Start()
@@ -128,7 +150,6 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(MoveEnemies());                
 				break;
 			case enumGameStates.GameEnd:
-				//TODO: GAMEEND anzeigen Sounf abspielen usw
 				break;
 			case enumGameStates.WaitRound:				
 				EventManager.TriggerEvent("PlayerWaitIcon", new Dictionary<string, object> {{"enable", true}});
@@ -178,5 +199,15 @@ public class GameManager : MonoBehaviour
 	{
 		enemies.Remove(enemy);
 	}
+
+	public void Finsish()
+	{
+		Destroy(GameObject.Find("Map"));
+		LifeUI.SetActive(false);
+		UICamara.gameObject.SetActive(true);
+		OutroScreen.SetActive(true);
+		Outro();
+	}
+	
 
 }

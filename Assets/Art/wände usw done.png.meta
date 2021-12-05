@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8d83fd93c3fbe954db3782477d0215ba
+guid: 919c0805c667d154e8b0c07f87b582c8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "w\xE4nde usw_0"
+      name: "w\xE4nde usw done_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -130,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a176928ee5087c4eb776128e060c339
-      internalID: -155563871
+      spriteID: a2939ab9f13ae9846bd3c1939f2d6b52
+      internalID: 1663750170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_1"
+      name: "w\xE4nde usw done_1"
       rect:
         serializedVersion: 2
         x: 32
@@ -151,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b139cdb31e36f92459ce58045b5a1f60
-      internalID: 1158799650
+      spriteID: 511e5df2a52dffd45b146fc88e804dbb
+      internalID: 821596634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_2"
+      name: "w\xE4nde usw done_2"
       rect:
         serializedVersion: 2
         x: 64
@@ -172,14 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9af9d53b184733749903dd411847d06b
-      internalID: 1692305016
+      spriteID: f505906a18181fa4382607ec490dd036
+      internalID: -1753651199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_3"
+      name: "w\xE4nde usw done_3"
       rect:
         serializedVersion: 2
         x: 96
@@ -193,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa893fe21255a564b917bc3dd8aa430c
-      internalID: -1631423808
+      spriteID: 9be58583a06a6a6459bf0152189a6a6f
+      internalID: -523618497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_4"
+      name: "w\xE4nde usw done_4"
       rect:
         serializedVersion: 2
         x: 128
@@ -214,14 +214,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8987aae16335e7a4d8642e4b86dbc783
-      internalID: 38370967
+      spriteID: d7b5da23da43b6549a51667c25f79787
+      internalID: -1598747077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_5"
+      name: "w\xE4nde usw done_5"
       rect:
         serializedVersion: 2
         x: 160
@@ -235,14 +235,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2077a5f83b4d2b49abf8dcc707654be
-      internalID: 2117702968
+      spriteID: f6fd6a28bdbe6e84fbcaa4e00ca43d8f
+      internalID: 727486139
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_6"
+      name: "w\xE4nde usw done_6"
       rect:
         serializedVersion: 2
         x: 192
@@ -256,14 +256,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6cf3721dfa8a6b845ba1a140cf4c7bd1
-      internalID: -1863200060
+      spriteID: ce006d27f71fba54fb1799c4f88a85e6
+      internalID: 233722167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_7"
+      name: "w\xE4nde usw done_7"
       rect:
         serializedVersion: 2
         x: 224
@@ -277,14 +277,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aedc1194ff72ccc4d960ff14b30c5478
-      internalID: -136021713
+      spriteID: fecdd65f06acec34eb40a62aeb574f49
+      internalID: 1540242235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_8"
+      name: "w\xE4nde usw done_8"
       rect:
         serializedVersion: 2
         x: 0
@@ -298,14 +298,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1150906b9a19cf4282e93bfc799f18a
-      internalID: -541490121
+      spriteID: bf408c95f7576354eb7e39c30ac3533b
+      internalID: 1606499654
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_9"
+      name: "w\xE4nde usw done_9"
       rect:
         serializedVersion: 2
         x: 32
@@ -319,14 +319,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d76b60b7111e6145a3d4677ae7f87c4
-      internalID: 2002955136
+      spriteID: f81a78779e38f8543a25db176bbd8688
+      internalID: -1149499461
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_10"
+      name: "w\xE4nde usw done_10"
       rect:
         serializedVersion: 2
         x: 64
@@ -340,14 +340,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b613899dcb180f040b2d30c25620f495
-      internalID: 1428855230
+      spriteID: c2ebc8ce7d3e47b439f4bf9f307deb65
+      internalID: -742913073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_11"
+      name: "w\xE4nde usw done_11"
       rect:
         serializedVersion: 2
         x: 96
@@ -361,14 +361,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4e42d518d8bbec49a8269f64ffa3aac
-      internalID: 1843735437
+      spriteID: a11916033b7afed429cd42430b6b1733
+      internalID: -261279677
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_12"
+      name: "w\xE4nde usw done_12"
       rect:
         serializedVersion: 2
         x: 128
@@ -382,14 +382,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b269f5755158254aa61936d91f534b7
-      internalID: -1495366826
+      spriteID: 4a781121141fa28499b5cda0cb9d1956
+      internalID: -2102641964
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_13"
+      name: "w\xE4nde usw done_13"
       rect:
         serializedVersion: 2
         x: 160
@@ -403,14 +403,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7afb0b911131e3c4e819edf3b44decfa
-      internalID: 1472432183
+      spriteID: 91d8d18660168704dbdd8b14c09075d8
+      internalID: -1907827170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_14"
+      name: "w\xE4nde usw done_14"
       rect:
         serializedVersion: 2
         x: 192
@@ -424,14 +424,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b31594b13f120044abbc1afd1828749
-      internalID: -1545711742
+      spriteID: b3c096fb889c09546bcd65c061f4bde7
+      internalID: 737510671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_15"
+      name: "w\xE4nde usw done_15"
       rect:
         serializedVersion: 2
         x: 224
@@ -445,14 +445,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65555a784e8d9524abe32cebfbb2780e
-      internalID: -808036969
+      spriteID: 882ac14adfd6f7b4e94744712c5b1b3c
+      internalID: 1592953217
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_16"
+      name: "w\xE4nde usw done_16"
       rect:
         serializedVersion: 2
         x: 0
@@ -466,14 +466,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01df784a1ac0bc34b9e52769cbbfe82c
-      internalID: -1859509038
+      spriteID: 514679a827ab5fb4bbe944f006aa791e
+      internalID: -261479956
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_17"
+      name: "w\xE4nde usw done_17"
       rect:
         serializedVersion: 2
         x: 32
@@ -487,14 +487,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ff3cb44d5de7004181b5a7b3dec12f6
-      internalID: -961529891
+      spriteID: c59e7f182490a984e8ab177bdf4e0973
+      internalID: -640572347
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_18"
+      name: "w\xE4nde usw done_18"
       rect:
         serializedVersion: 2
         x: 64
@@ -508,14 +508,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3af9d9e1183f3194a9f8e747018e8ec4
-      internalID: -1789754860
+      spriteID: 9dea74b580a2da14ead47ef8f7447337
+      internalID: -2132292188
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "w\xE4nde usw_19"
+      name: "w\xE4nde usw done_19"
       rect:
         serializedVersion: 2
         x: 96
@@ -529,8 +529,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9c53e520e681ec4bb69fdfcca057cb1
-      internalID: 1732880343
+      spriteID: c54262cb57bf88d44a07d2776f4e64ea
+      internalID: -1946242853
       vertices: []
       indices: 
       edges: []
@@ -546,26 +546,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "w\xE4nde usw_19": 1732880343
-      "w\xE4nde usw_14": -1545711742
-      "w\xE4nde usw_1": 1158799650
-      "w\xE4nde usw_15": -808036969
-      "w\xE4nde usw_9": 2002955136
-      "w\xE4nde usw_10": 1428855230
-      "w\xE4nde usw_2": 1692305016
-      "w\xE4nde usw_18": -1789754860
-      "w\xE4nde usw_17": -961529891
-      "w\xE4nde usw_13": 1472432183
-      "w\xE4nde usw_11": 1843735437
-      "w\xE4nde usw_4": 38370967
-      "w\xE4nde usw_6": -1863200060
-      "w\xE4nde usw_8": -541490121
-      "w\xE4nde usw_7": -136021713
-      "w\xE4nde usw_0": -155563871
-      "w\xE4nde usw_12": -1495366826
-      "w\xE4nde usw_3": -1631423808
-      "w\xE4nde usw_5": 2117702968
-      "w\xE4nde usw_16": -1859509038
+      "w\xE4nde usw done_17": -640572347
+      "w\xE4nde usw done_18": -2132292188
+      "w\xE4nde usw done_16": -261479956
+      "w\xE4nde usw done_0": 1663750170
+      "w\xE4nde usw done_4": -1598747077
+      "w\xE4nde usw done_5": 727486139
+      "w\xE4nde usw done_15": 1592953217
+      "w\xE4nde usw done_14": 737510671
+      "w\xE4nde usw done_10": -742913073
+      "w\xE4nde usw done_12": -2102641964
+      "w\xE4nde usw done_11": -261279677
+      "w\xE4nde usw done_19": -1946242853
+      "w\xE4nde usw done_1": 821596634
+      "w\xE4nde usw done_3": -523618497
+      "w\xE4nde usw done_6": 233722167
+      "w\xE4nde usw done_13": -1907827170
+      "w\xE4nde usw done_9": -1149499461
+      "w\xE4nde usw done_8": 1606499654
+      "w\xE4nde usw done_2": -1753651199
+      "w\xE4nde usw done_7": 1540242235
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
