@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         EventManager.StartListening("PlayerWaitIcon", OnPlayerWaitIcon);
+        EventManager.StartListening("PlayerAttack", OnPlayerAttack);
     }
 
     private void Update()
