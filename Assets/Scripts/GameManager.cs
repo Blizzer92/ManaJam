@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 		
 	}
 
-	void StartGameClick()
+	public void StartGameClick()
 	{
 		MenuScreen.SetActive(false);
 		UICamara.enabled = false;
