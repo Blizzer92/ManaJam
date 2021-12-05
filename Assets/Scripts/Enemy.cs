@@ -36,7 +36,11 @@ public class Enemy : MonoBehaviour
 
 
         public void Move ()
-        {            
+        {
+            if (player == null)
+            {
+                player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            }
             Vector2 start = transform.position;
             Vector2 end; // = start + ranndomVector[random];
 

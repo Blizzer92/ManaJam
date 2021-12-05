@@ -152,6 +152,11 @@ public class Player : MonoBehaviour
         Destroy(GameObject.Find("Map"));
     }
 
+    private void OnDestroy()
+    {
+        EventManager.StopListening("PlayerWaitIcon", OnPlayerWaitIcon);
+    }
+
     private void PlayMovementSound()
     {
         int idx = Random.Range(0, maxMovementSounds);

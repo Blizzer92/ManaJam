@@ -130,6 +130,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   speed: 5
+  maxHealth: 5
   health: 5
   WaitIcon: {fileID: 3711576478816255950}
 --- !u!61 &4595057013536371775
