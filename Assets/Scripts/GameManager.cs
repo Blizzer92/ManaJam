@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum enumGameStates
 {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance = null;
 	public GameObject MenuScreen;
 	public Camera UICamara;
+	public Button startGameBT;
 
 	public MapManager mapManager;
 	[HideInInspector] public bool playerCanMove = true;
@@ -46,8 +48,17 @@ public class GameManager : MonoBehaviour
 		enemies = new List<Enemy>();
 
 		mapManager = GetComponent<MapManager>();
+		
 	}
 
+	void StartGameClick()
+	{
+		MenuScreen.SetActive(false);
+		UICamara.enabled = false;
+		gameState = enumGameStates.Input;
+		StartGame();
+	}
+	
 	void StartGame()
 	{		
 		enemies.Clear();
@@ -56,6 +67,7 @@ public class GameManager : MonoBehaviour
 
 	private void Start() 
 	{
+		startGameBT.onClick.AddListener(StartGameClick);
         GameObject go = GameObject.FindGameObjectWithTag("MainCamera");
         if (go != null)
             mainCamera = go.GetComponent<Camera>();
@@ -76,15 +88,6 @@ public class GameManager : MonoBehaviour
 	{
 		switch(gameState)
 		{
-			case enumGameStates.Menu:
-				if (Input.GetMouseButton(0))
-				{
-					MenuScreen.SetActive(false);
-					UICamara.enabled = false;
-					gameState = enumGameStates.Input;
-					StartGame();
-				}
-				break;
 			case enumGameStates.EnemiesMove:				
 				gameState = enumGameStates.EnemiesMoving;                  
                 StartCoroutine(MoveEnemies());                
