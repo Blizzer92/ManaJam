@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
         boxCollider2D.enabled = false;
         RaycastHit2D hit = Physics2D.Linecast(start, end, blockingLayer);
         boxCollider2D.enabled = true;
+        
         if (hit.transform != null)
         {
             Enemy enemy = hit.transform.GetComponent<Enemy>();
