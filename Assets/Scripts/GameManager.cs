@@ -21,8 +21,7 @@ public class GameManager : MonoBehaviour
 	public Camera UICamara;
 
 	public MapManager mapManager;
-	[HideInInspector] public bool playerCanMove = true;
-	[HideInInspector] public Plane[] cameraPlanes;
+	[HideInInspector] public bool playerCanMove = true;	
 	private List<Enemy> enemies;
 	public int level = -1;
 
@@ -68,11 +67,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	void Update()
-	{
-        if (mainCamera != null)
-        {
-            cameraPlanes = GeometryUtility.CalculateFrustumPlanes(mainCamera);            
-        }
+	{        
         UpdateStateMachine();
 	}
 

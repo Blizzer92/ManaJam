@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
         [HideInInspector] public bool isMoving;
         private Player player;        
         private int maxMovementSounds = 3;
+        private bool isVisible;
         
         
         private List<Vector2> ranndomVector = new();
@@ -35,9 +36,7 @@ public class Enemy : MonoBehaviour
 
 
         public void Move ()
-        {
-            bool enemyVisible = true;
-
+        {            
             Vector2 start = transform.position;
             Vector2 end; // = start + ranndomVector[random];
 
@@ -46,9 +45,7 @@ public class Enemy : MonoBehaviour
             if (distToPlayer > chaseDistance)
             {
                 int random = Random.Range(0, ranndomVector.Count);
-                end = start + ranndomVector[random];
-                // can enemy be seen by camera? if not then move enemy instant
-                enemyVisible = GeometryUtility.TestPlanesAABB(GameManager.instance.cameraPlanes, boxCollider2D.bounds);
+                end = start + ranndomVector[random];                                
             } else
             {
                 Vector2 target = player.transform.position - transform.position;
@@ -81,13 +78,14 @@ public class Enemy : MonoBehaviour
                 }
             } else
             {
-                if (enemyVisible)
+                if (isVisible)
                 {
                     PlayMovementSound();
                     StartCoroutine(SmoothMovement(end));                
                 } else
                 {
-                    rb2D.MovePosition(end);
+                    //rb2D.MovePosition(end);
+                    transform.position = end;
                 }
             }
         }
@@ -110,6 +108,8 @@ public class Enemy : MonoBehaviour
 
         public void DamageEnemy(int damage)
         {
+            AudioManager.instance.PlaySFX("EnemyDamaged1");
+            
             health -= damage;
             if (health <= 0)
             {
@@ -123,6 +123,16 @@ public class Enemy : MonoBehaviour
             int idx = Random.Range(0, maxMovementSounds);
             string sfxName = "EnemyMove" + (idx + 1).ToString();
             AudioManager.instance.PlaySFX(sfxName);
+        }
+
+        private void OnBecameInvisible() 
+        {
+            isVisible = false;            
+        }
+
+        private void OnBecameVisible() 
+        {
+            isVisible = true;            
         }
 
     }

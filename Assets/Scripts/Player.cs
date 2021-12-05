@@ -118,10 +118,11 @@ public class Player : MonoBehaviour
 
     public void DamagePlayer(int damage)
     {
+        AudioManager.instance.PlaySFX("PlayerDamaged1");
         health -= damage;
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 2.0f);
         }
     }
 
