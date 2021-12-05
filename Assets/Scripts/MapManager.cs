@@ -112,8 +112,7 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
-
-
+        
     }
     
     void AddItemOnRandomPosition(GameObject[] objectArray, int min, int max)
