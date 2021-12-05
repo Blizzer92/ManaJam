@@ -7,18 +7,18 @@
       r..........l       r........l  r.l
       r.acacac24.l       r------4.l  r.l
       r.......LR.l      r--------.--lr.l
-    r-acac.ac.lr.l      r________.__lr.l
-    r_bdbd.bd.lr.--------...........lr.l
+    r-acacXac.lr.l      r________.__lr.l
+    r_bdbd.bd.lr.--------.....X.....lr.l
     r.........lr.________.acac.acac.lr.l
-    r.2--4.2--lr..........bdbd.bdbd.lr.l
+    r.2--4.2--lr.....X....bdbd.bdbd.lr.l
 racac.L__R.L__rl-2------4.ac.....ac.--.l
 rbdbd.lr--.-----.L______R.bd.....bd.__.l
-r.....lr__._____.l      r..............l
-acac4.--.........l      r.ac.....ac.2--l
+rP....lr__._____.l      rX....B........l
+acac4.--.....X...l      r.ac.....ac.2--l
 bdbdR.__.2--------l     r.bd.....bd.L__l
-    r....L________-------.acac.acac.l
+    r...XL________-------.acac.acac.l
     r--4.-----...._______.bdbd.bdbd.l
-    r__R._____.24...................l
+    r__R._____.24..X..........X.....l
        r.......LR-------------------l
        r-------lr___________________l
        r_______l
