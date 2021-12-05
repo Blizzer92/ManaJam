@@ -136,9 +136,10 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Exit"))
         {
-            if (GameManager.instance.level == GameManager.instance.levels.Length)
+            if (GameManager.instance.level == GameManager.instance.levels.Length - 1)
             {
                 GameManager.instance.ChangeState(enumGameStates.GameEnd);
+                GameManager.instance.Finsish();
             }
             else
             {
