@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 		enemies.Clear();
 		mapManager.Setup(level);
 		AudioManager.instance.PlayMusic("Game");
+		AudioManager.instance.SetMusicVolume(0.5f);
 	}
 
 	private void Start() 

@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
 
         [HideInInspector] public bool isMoving;
         private Player player;        
+        private int maxMovementSounds = 3;
         
         
         private List<Vector2> ranndomVector = new();
@@ -82,6 +83,7 @@ public class Enemy : MonoBehaviour
             {
                 if (enemyVisible)
                 {
+                    PlayMovementSound();
                     StartCoroutine(SmoothMovement(end));                
                 } else
                 {
@@ -114,6 +116,13 @@ public class Enemy : MonoBehaviour
                 GameManager.instance.RemoveEnemyFromList(this);
                 Destroy(gameObject);
             }
+        }
+
+        private void PlayMovementSound()
+        {
+            int idx = Random.Range(0, maxMovementSounds);
+            string sfxName = "EnemyMove" + (idx + 1).ToString();
+            AudioManager.instance.PlaySFX(sfxName);
         }
 
     }

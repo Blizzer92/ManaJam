@@ -910,7 +910,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e244fe1f195c24faf138fcd1672de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfx: []
+  sfx:
+  - SoundName: PlayerMove1
+    AudioClip: {fileID: 8300000, guid: fc59d61c53fdb9a4696a0e6bde67aa5b, type: 3}
+  - SoundName: PlayerMove2
+    AudioClip: {fileID: 8300000, guid: fc59d61c53fdb9a4696a0e6bde67aa5b, type: 3}
+  - SoundName: PlayerMove3
+    AudioClip: {fileID: 8300000, guid: fc59d61c53fdb9a4696a0e6bde67aa5b, type: 3}
+  - SoundName: EnemyMove1
+    AudioClip: {fileID: 8300000, guid: f3aa81c46b324b9438c169472a873b5e, type: 3}
+  - SoundName: EnemyMove2
+    AudioClip: {fileID: 8300000, guid: f3aa81c46b324b9438c169472a873b5e, type: 3}
+  - SoundName: EnemyMove3
+    AudioClip: {fileID: 8300000, guid: f3aa81c46b324b9438c169472a873b5e, type: 3}
   music:
   - SoundName: StartMenu
     AudioClip: {fileID: 8300000, guid: 1d8c0cfccfec658448a96fe569725ddf, type: 3}
