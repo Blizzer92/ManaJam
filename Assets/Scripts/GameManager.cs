@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
 	public Text outro;
 	public Bar healthBar;
 	public float textSpeed = 1f;
+
+	public float health;
+	public float maxHealth = 5;
 	
 	public MapManager mapManager;
 	[HideInInspector] public bool playerCanMove = true;	
@@ -57,13 +60,15 @@ public class GameManager : MonoBehaviour
 		//DontDestroyOnLoad(gameObject);
 
 		enemies = new List<Enemy>();
-
+		health = maxHealth;
+		healthBar.Set(1);
 		mapManager = GetComponent<MapManager>();
 		
 	}
 
 	public void StartGameClick()
 	{
+		AudioManager.instance.PlaySFX("StartClick");
 		TextScreen.SetActive(true);
 		Intro();		
 		MenuScreen.SetActive(false);
@@ -99,35 +104,35 @@ public class GameManager : MonoBehaviour
 	public void Intro()
 	{
 		Sequence introSequence = DOTween.Sequence();
-		introSequence.Append(intro.DOText("Es war einmal eine Welt, in der die Katzen alle Märchen stahlen und zerstörten.", textSpeed));
+		introSequence.Append(intro.DOText("Es war einmal eine Welt, in der die Ratten alle Märchen stahlen und zerstörten.", textSpeed));
 		introSequence.AppendInterval(textSpeed / 2);
 		introSequence.Append(intro.DOText("Ein letztes war verschont geblieben.", textSpeed));
 		introSequence.AppendInterval(textSpeed / 2);
 		introSequence.Append(intro.DOText("Jedoch hielten sie dieses versteckt, in 5 Teilen an 5 Orten.", textSpeed));
 		introSequence.AppendInterval(textSpeed / 2);
-		introSequence.Append(intro.DOText("Zieh' los und finde alle 5 Teile! Aber gib Acht. Katzen sind gefährlich.", textSpeed));
+		introSequence.Append(intro.DOText("Zieh' los und finde alle 5 Teile! Aber gib Acht. Ratten sind gefährlich.", textSpeed));
 		introSequence.AppendInterval(textSpeed).OnComplete(() => { AfterIntro(); });
 	}
 	
 	public void Outro()
 	{
 		Sequence introSequence = DOTween.Sequence();
-		introSequence.Append(outro.DOText("Geschwind kehrte die kleine Ratte nach Haus' zurück und erzählt der todkranken Schwester das letzte Märchen.", textSpeed));
+		introSequence.Append(outro.DOText("Geschwind kehrte die kleine Katze nach Haus' zurück und erzählt der todkranken Schwester das letzte Märchen.", textSpeed));
 		introSequence.AppendInterval(textSpeed / 2);
 		introSequence.Append(outro.DOText("Es war ein schöner Moment.", textSpeed));
 		introSequence.AppendInterval(textSpeed / 2);
-		introSequence.Append(outro.DOText("Und wenn die kleine Ratte nicht gestorben ist, dann schwelgt sie noch heute in dieser wärmenden Erinnerung.", textSpeed));
+		introSequence.Append(outro.DOText("Und wenn die kleine Katze nicht gestorben ist, dann schwelgt sie noch heute in dieser wärmenden Erinnerung.", textSpeed));
 		introSequence.AppendInterval(textSpeed).OnComplete(() => { AfterOutro(); });
 	}
 	
 	public void OutroDead()
 	{
 		Sequence introSequence = DOTween.Sequence();
-		introSequence.Append(outro.DOText("TOOOOOOTGeschwind kehrte die kleine Ratte nach Haus' zurück und erzählt der todkranken Schwester das letzte Märchen.", textSpeed));
+		introSequence.Append(outro.DOText("Leider konntest du das letzte Märchen nicht finden.", textSpeed));
 		introSequence.AppendInterval(textSpeed / 2);
-		introSequence.Append(outro.DOText("Es war ein schöner Moment.", textSpeed));
+		introSequence.Append(outro.DOText("Traurig kehrst du zurück..", textSpeed));
 		introSequence.AppendInterval(textSpeed / 2);
-		introSequence.Append(outro.DOText("Und wenn die kleine Ratte nicht gestorben ist, dann schwelgt sie noch heute in dieser wärmenden Erinnerung.", textSpeed));
+		introSequence.Append(outro.DOText("Deine kleine Schwester freut sich aber das du wieder da bist!", textSpeed));
 		introSequence.AppendInterval(textSpeed).OnComplete(() => { AfterOutro(); });
 	}
 	

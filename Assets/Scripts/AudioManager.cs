@@ -59,7 +59,7 @@ public class AudioManager : MonoBehaviour
         {
             if (musicAudioSource.isPlaying && musicAudioSource.clip == musicSource.AudioClip)
             {
-                musicAudioSource.time = 0f;
+                //musicAudioSource.time = 0f;
                 return;
             }
             musicAudioSource.clip = musicSource.AudioClip;

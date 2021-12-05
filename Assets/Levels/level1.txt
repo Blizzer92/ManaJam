@@ -1,14 +1,14 @@
 r-------------l r-----l
 r_____________l r_____l
-r....X........-lr.....l
+r....X........-lr....Xl
 r..24ac..2--4._lr.2-4.l
 r..LRbd..L__R..lr.L_R.l
 r..lr....l  r--lr.l r.l
 rP.lr4c..--------.l r.l
 r..lrRd..________.l rBl
-r..l r........X...l r-l
+r..l r.X......X...l r-l
 r..---.2---4.acac.l r_l
 r..___.L___R.bdbd.l
-r......l   r......l
+r..X...l   r.....Xl
 r------l   r------l
 r______l   r______l

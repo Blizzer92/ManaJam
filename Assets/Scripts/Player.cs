@@ -13,8 +13,6 @@ public class Player : MonoBehaviour
     public BoxCollider2D boxCollider2D;
     public LayerMask blockingLayer;
     public float speed = 0.05f;
-    public float maxHealth = 3;
-    public float health = 1;
     public Transform WaitIcon;
     public Transform WeaponIcon;
     public Transform WeaponIcon2;
@@ -23,8 +21,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        health = maxHealth;
-        GameManager.instance.healthBar.Set(1);
+        
         animator = GetComponent<Animator>();
         EventManager.StartListening("PlayerWaitIcon", OnPlayerWaitIcon);        
     }
@@ -124,20 +121,25 @@ public class Player : MonoBehaviour
     public void DamagePlayer(int damage)
     {
         AudioManager.instance.PlaySFX("PlayerDamaged1");
-        health -= damage;
-        GameManager.instance.healthBar.Set(health / maxHealth);
-        if (health <= 0)
+        GameManager.instance.health -= damage;
+        GameManager.instance.healthBar.Set(GameManager.instance.health / GameManager.instance.maxHealth);
+        if (GameManager.instance.health <= 0)
         {
             GameManager.instance.ChangeState(enumGameStates.GameEnd);
+            AudioManager.instance.PlayMusic("GameOver");
             GameManager.instance.FinsishDead();
         }
     }
     
     public void HealPlayer(int damage)
     {
+        if (GameManager.instance.health + damage < GameManager.instance.maxHealth)
+        {
+            GameManager.instance.health += damage;
+            GameManager.instance.healthBar.Set(GameManager.instance.health / GameManager.instance.maxHealth);
+        }
         //AudioManager.instance.PlaySFX("PlayerDamaged1");
-        health += damage;
-        GameManager.instance.healthBar.Set(health / maxHealth);
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -147,6 +149,7 @@ public class Player : MonoBehaviour
             if (GameManager.instance.level == GameManager.instance.levels.Length - 1)
             {
                 GameManager.instance.ChangeState(enumGameStates.GameEnd);
+                AudioManager.instance.PlayMusic("GameWin");
                 GameManager.instance.Finsish();
             }
             else
