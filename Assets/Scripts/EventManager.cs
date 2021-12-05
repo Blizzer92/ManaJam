@@ -63,7 +63,7 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    // How to use
+    // How to use:
     // no parameter:  EventManager.TriggerEvent("someEvent", null);
     // one parameter: EventManager.TriggerEvent("someEvent", new Dictionary<string, object> { { "enable", true }})
     /* two parameter: EventManager.TriggerEvent("someEvent", new Dictionary<string, object> 

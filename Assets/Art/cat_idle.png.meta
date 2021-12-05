@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c5bdc025e8222451ba343b530d86d953
+guid: 96686d9717ab1d141aa345d128a29287
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -100,47 +100,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cat4-Sheet_0
+      name: cat_idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -154,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52ee28f4fd9b445fbad338e5d9370a24
-      internalID: 1764174516
+      spriteID: ccd6e31a7ce74f8448276bd8809b2d66
+      internalID: -1792084585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cat4-Sheet_1
+      name: cat_idle_1
       rect:
         serializedVersion: 2
         x: 32
@@ -175,14 +139,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6044a491286434116a00c95cc10bf9aa
-      internalID: -2073808210
+      spriteID: 09fbf0596d8b48d4d90b22d2133b8387
+      internalID: 1833795206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cat4-Sheet_2
+      name: cat_idle_2
       rect:
         serializedVersion: 2
         x: 64
@@ -196,8 +160,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e510c85989bf44d4f9ed206b51c46e66
-      internalID: 441797136
+      spriteID: 351159e53f0d5e244af376e73f95dcef
+      internalID: -1571040669
       vertices: []
       indices: 
       edges: []
@@ -213,9 +177,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      cat4-Sheet_2: 441797136
-      cat4-Sheet_1: -2073808210
-      cat4-Sheet_0: 1764174516
+      cat_idle_1: 1833795206
+      cat_idle_2: -1571040669
+      cat_idle_0: -1792084585
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
