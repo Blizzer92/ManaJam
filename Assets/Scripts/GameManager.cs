@@ -98,26 +98,35 @@ public class GameManager : MonoBehaviour
 
 	public void Intro()
 	{
-		Debug.Log("Intro Start");
 		Sequence introSequence = DOTween.Sequence();
 		introSequence.Append(intro.DOText("Es war einmal eine Welt, in der die Katzen alle Märchen stahlen und zerstörten.", textSpeed));
-		introSequence.AppendInterval(textSpeed);
+		introSequence.AppendInterval(textSpeed / 2);
 		introSequence.Append(intro.DOText("Ein letztes war verschont geblieben.", textSpeed));
-		introSequence.AppendInterval(textSpeed);
+		introSequence.AppendInterval(textSpeed / 2);
 		introSequence.Append(intro.DOText("Jedoch hielten sie dieses versteckt, in 5 Teilen an 5 Orten.", textSpeed));
-		introSequence.AppendInterval(textSpeed);
+		introSequence.AppendInterval(textSpeed / 2);
 		introSequence.Append(intro.DOText("Zieh' los und finde alle 5 Teile! Aber gib Acht. Katzen sind gefährlich.", textSpeed));
 		introSequence.AppendInterval(textSpeed).OnComplete(() => { AfterIntro(); });
-		Debug.Log("Intro Ende");
 	}
 	
 	public void Outro()
 	{
 		Sequence introSequence = DOTween.Sequence();
 		introSequence.Append(outro.DOText("Geschwind kehrte die kleine Ratte nach Haus' zurück und erzählt der todkranken Schwester das letzte Märchen.", textSpeed));
-		introSequence.AppendInterval(textSpeed);
+		introSequence.AppendInterval(textSpeed / 2);
 		introSequence.Append(outro.DOText("Es war ein schöner Moment.", textSpeed));
-		introSequence.AppendInterval(textSpeed);
+		introSequence.AppendInterval(textSpeed / 2);
+		introSequence.Append(outro.DOText("Und wenn die kleine Ratte nicht gestorben ist, dann schwelgt sie noch heute in dieser wärmenden Erinnerung.", textSpeed));
+		introSequence.AppendInterval(textSpeed).OnComplete(() => { AfterOutro(); });
+	}
+	
+	public void OutroDead()
+	{
+		Sequence introSequence = DOTween.Sequence();
+		introSequence.Append(outro.DOText("TOOOOOOTGeschwind kehrte die kleine Ratte nach Haus' zurück und erzählt der todkranken Schwester das letzte Märchen.", textSpeed));
+		introSequence.AppendInterval(textSpeed / 2);
+		introSequence.Append(outro.DOText("Es war ein schöner Moment.", textSpeed));
+		introSequence.AppendInterval(textSpeed / 2);
 		introSequence.Append(outro.DOText("Und wenn die kleine Ratte nicht gestorben ist, dann schwelgt sie noch heute in dieser wärmenden Erinnerung.", textSpeed));
 		introSequence.AppendInterval(textSpeed).OnComplete(() => { AfterOutro(); });
 	}
@@ -206,6 +215,15 @@ public class GameManager : MonoBehaviour
 		UICamara.gameObject.SetActive(true);
 		OutroScreen.SetActive(true);
 		Outro();
+	}
+	
+	public void FinsishDead()
+	{
+		Destroy(GameObject.Find("Map"));
+		LifeUI.SetActive(false);
+		UICamara.gameObject.SetActive(true);
+		OutroScreen.SetActive(true);
+		OutroDead();
 	}
 	
 

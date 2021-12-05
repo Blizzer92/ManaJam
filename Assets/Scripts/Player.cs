@@ -128,8 +128,16 @@ public class Player : MonoBehaviour
         GameManager.instance.healthBar.Set(health / maxHealth);
         if (health <= 0)
         {
-            Destroy(gameObject, 4.0f);
+            GameManager.instance.ChangeState(enumGameStates.GameEnd);
+            GameManager.instance.FinsishDead();
         }
+    }
+    
+    public void HealPlayer(int damage)
+    {
+        //AudioManager.instance.PlaySFX("PlayerDamaged1");
+        health += damage;
+        GameManager.instance.healthBar.Set(health / maxHealth);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

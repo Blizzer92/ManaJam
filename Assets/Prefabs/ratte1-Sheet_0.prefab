@@ -324,6 +324,8 @@ MonoBehaviour:
   speed: 5
   health: 2
   chaseDistance: 3
+  damage: 1
+  healtContainer: {fileID: 6236406194201400257, guid: 28500754c59923447bca63fb6763a9c7, type: 3}
   isMoving: 0
   WeaponIcon: {fileID: 4958032161638843973}
   WeaponIcon2: {fileID: 2674326268438057242}

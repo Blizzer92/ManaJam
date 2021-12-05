@@ -1,14 +1,19 @@
-r-------------l r-----l
-r_____________l r_____l
-r....X........-lr.....l
-r..24ac..2--4._lr.2-4.l
-r..LRbd..L__R..lr.L_R.l
-r..lr....l  r--lr.l r.l
-rP.lr4c..--------.l r.l
-r..lrRd..________.l rBl
-r..l r........X...l r-l
-r..---.2---4.acac.l r_l
-r..___.L___R.bdbd.l
-r......l   r......l
-r------l   r------l
-r______l   r______l
+r----l
+r____l      r-----------l
+r....l      r___________l
+r..2-l      r..........Bl
+r..L_l      rX2---------l
+rP.--l      r.L___R-----l
+r..__l      r.l   r_____l
+r....ac--l  r.l   r.....l
+r....bd__l  r.l   r.----l
+r-4....acl  r.l   r.____l
+raR--4.bdl  r.l   r.....l
+rbacac...lrac.--l r---4.l
+r.bdbdac.lrbd.__lrac-LR.l
+r........lr.....lrbd_lr.l
+r.---------.2-4.--...--.l
+r._________.L_R.__.ac__.l
+r...........l r.........l
+r-----------l r---------l
+r___________l r_________l

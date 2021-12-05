@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
         public int health = 1;
         public float chaseDistance = 3.0f;
         public int damage = 1;
+        public GameObject healtContainer;
 
         [HideInInspector] public bool isMoving;
         private Player player;        
@@ -145,6 +146,11 @@ public class Enemy : MonoBehaviour
             if (health <= 0)
             {                
                 GameManager.instance.RemoveEnemyFromList(this);
+
+                if (Random.Range(0, 3) == 0)
+                {
+                    Instantiate(healtContainer, transform.position, Quaternion.identity);
+                }
                 Destroy(gameObject);
             }
         }
