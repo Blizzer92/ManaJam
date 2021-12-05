@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     public float maxHealth = 3;
     public float health = 1;
     public Transform WaitIcon;
+    public Transform WeaponIcon;
+    public Transform WeaponIcon2;
     private Animator animator;
     private int maxMovementSounds = 3;
 
@@ -24,8 +26,7 @@ public class Player : MonoBehaviour
         health = maxHealth;
         GameManager.instance.healthBar.Set(1);
         animator = GetComponent<Animator>();
-        EventManager.StartListening("PlayerWaitIcon", OnPlayerWaitIcon);
-        EventManager.StartListening("PlayerAttack", OnPlayerAttack);
+        EventManager.StartListening("PlayerWaitIcon", OnPlayerWaitIcon);        
     }
 
     private void Update()
@@ -85,11 +86,11 @@ public class Player : MonoBehaviour
             Enemy enemy = hit.transform.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.DamageEnemy(1);
+                Debug.Log("Enemy hit: " + enemy.name);
+                StartCoroutine(PlayerAtatck(enemy, 1));                                
+            } else            
                 GameManager.instance.ChangeState(enumGameStates.EnemiesMove);
-            }
-            
-            GameManager.instance.ChangeState(enumGameStates.EnemiesMove);
+
             animator.SetInteger("movement", 0);
         } else
         {
@@ -127,7 +128,7 @@ public class Player : MonoBehaviour
         GameManager.instance.healthBar.Set(health / maxHealth);
         if (health <= 0)
         {
-            Destroy(gameObject, 2.0f);
+            Destroy(gameObject, 4.0f);
         }
     }
 
@@ -154,7 +155,7 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.StopListening("PlayerWaitIcon", OnPlayerWaitIcon);
+        EventManager.StopListening("PlayerWaitIcon", OnPlayerWaitIcon);        
     }
 
     private void PlayMovementSound()
@@ -162,6 +163,23 @@ public class Player : MonoBehaviour
         int idx = Random.Range(0, maxMovementSounds);
         string sfxName = "PlayerMove" + (idx+1).ToString();
         AudioManager.instance.PlaySFX(sfxName);
+    }
+
+    private IEnumerator PlayerAtatck(Enemy enemy, int damage)
+    {                
+        WeaponIcon.gameObject.SetActive(true);
+        AudioManager.instance.PlaySFX("PlayerHit");
+        yield return new WaitForSeconds(0.5f);
+        WeaponIcon2.gameObject.SetActive(true);
+        AudioManager.instance.PlaySFX("PlayerHit");
+        yield return new WaitForSeconds(0.5f);
+        enemy.DamageEnemy(damage);
+        yield return new WaitForSeconds(1f);
+        WeaponIcon.gameObject.SetActive(false);
+        WeaponIcon2.gameObject.SetActive(false);
+        enemy.CheckEnemyHealth();
+        yield return new WaitForSeconds(0.5f);
+        GameManager.instance.ChangeState(enumGameStates.EnemiesMove);
     }
 
     void OnPlayerWaitIcon(Dictionary<string, object> message)
@@ -175,5 +193,5 @@ public class Player : MonoBehaviour
         {
             WaitIcon.gameObject.SetActive(false);
         }
-    }
+    }    
 }

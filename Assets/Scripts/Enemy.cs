@@ -12,11 +12,15 @@ public class Enemy : MonoBehaviour
         public float speed = 0.05f;
         public int health = 1;
         public float chaseDistance = 3.0f;
+        public int damage = 1;
 
         [HideInInspector] public bool isMoving;
         private Player player;        
         private int maxMovementSounds = 3;
         private bool isVisible;
+
+        public Transform WeaponIcon;
+        public Transform WeaponIcon2;
         
         
         private List<Vector2> ranndomVector = new();
@@ -78,8 +82,7 @@ public class Enemy : MonoBehaviour
                 Player player = hit.transform.GetComponent<Player>();
                 if (player != null)
                 {
-                    player.DamagePlayer(1);
-                    //Debug.Log("DamagePlayer by: " + gameObject.GetInstanceID());
+                    StartCoroutine(EnemyAttack(player, damage));
                     isMoving = false;
                 }
             } else
@@ -112,17 +115,40 @@ public class Enemy : MonoBehaviour
             isMoving = false;       
         }
 
-        public void DamageEnemy(int damage)
+        IEnumerator EnemyAttack(Player player, int damage)
         {
-            AudioManager.instance.PlaySFX("EnemyDamaged1");
-            
+            yield return new WaitForSeconds(0.5f);
+            WeaponIcon.gameObject.SetActive(true);
+            AudioManager.instance.PlaySFX("EnemyHit");
+            yield return new WaitForSeconds(0.5f);
+            WeaponIcon2.gameObject.SetActive(true);
+            AudioManager.instance.PlaySFX("EnemyHit");
+            yield return new WaitForSeconds(0.5f);
+            player.DamagePlayer(damage);
+            yield return new WaitForSeconds(1f);
+            WeaponIcon.gameObject.SetActive(false);
+            WeaponIcon2.gameObject.SetActive(false);            
+            yield return new WaitForSeconds(1.0f);
+        }
+        
+        public void DamageEnemy(int damage)
+        {                        
             health -= damage;
             if (health <= 0)
             {
+                AudioManager.instance.PlaySFX("EnemyDamaged1");                
+            }
+        }
+
+        public void CheckEnemyHealth()        
+        {
+            if (health <= 0)
+            {                
                 GameManager.instance.RemoveEnemyFromList(this);
                 Destroy(gameObject);
             }
         }
+        
 
         private void PlayMovementSound()
         {

@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 
-		DontDestroyOnLoad(gameObject);
+		//DontDestroyOnLoad(gameObject);
 
 		enemies = new List<Enemy>();
 
@@ -62,7 +62,8 @@ public class GameManager : MonoBehaviour
 	public void StartGameClick()
 	{
 		TextScreen.SetActive(true);
-		Intro();
+		//Intro();
+		AfterIntro();
 		MenuScreen.SetActive(false);
 
 	}
@@ -123,8 +124,7 @@ public class GameManager : MonoBehaviour
 		switch(gameState)
 		{
 			case enumGameStates.EnemiesMove:				
-				ChangeState(enumGameStates.EnemiesMoving);
-				Debug.Log("StartCo MoveEnemies");
+				ChangeState(enumGameStates.EnemiesMoving);				
                 StartCoroutine(MoveEnemies());                
 				break;
 			case enumGameStates.GameEnd:
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
 	{
 		prevGameState = gameState;
 		gameState = newState;	
-		Debug.Log("Change state: " + prevGameState + " -> " + gameState);
+		//Debug.Log("Change state: " + prevGameState + " -> " + gameState);
 	}
 
 	public enumGameStates GetState()
