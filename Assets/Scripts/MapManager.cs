@@ -10,12 +10,25 @@ public class MapManager : MonoBehaviour
     public int height = 8;
     public int width = 8;
 
-    public GameObject[] floors;
-    public GameObject[] walls;
-    public GameObject[] enemies;
+    public GameObject wall_l;
+    public GameObject wall_L;
+    public GameObject wall_r;
+    public GameObject wall_R;
+    public GameObject wall_1;
+    public GameObject wall_2;
+    public GameObject wall_3;
+    public GameObject wall_4;
+    public GameObject wall_Viertelgeviertstrich;
+    public GameObject wall__;
+    public GameObject floor;
+    public GameObject regal_a;
+    public GameObject regal_b;
+    public GameObject regal_c;
+    public GameObject regal_d;
     public GameObject player;
     public GameObject exit;
-
+    public GameObject enemies;
+    
     private List<Vector2> gridPositions = new();
     private Transform map;
 
@@ -55,10 +68,10 @@ public class MapManager : MonoBehaviour
 
                 if (x == -1 || x == width || y == -1 || y == height)
                 {
-                    toInstantiate = walls[Random.Range(0, walls.Length)];
+                    toInstantiate = wall_1;
                 } else
                 {
-                    toInstantiate = floors[Random.Range(0, floors.Length)];
+                    toInstantiate = floor;
                 }
 
                 GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
@@ -85,23 +98,62 @@ public class MapManager : MonoBehaviour
 
                 switch (f[y][x])
                 {
-                    case '#':
-                        toInstantiate = walls[Random.Range(0, walls.Length)];
+                    case 'l':
+                        toInstantiate = wall_l;
+                        break;
+                    case 'L':
+                        toInstantiate = wall_L;
+                        break;
+                    case 'r':
+                        toInstantiate = wall_r;
+                        break;
+                    case 'R':
+                        toInstantiate = wall_R;
+                        break;
+                    case '1':
+                        toInstantiate = wall_1;
+                        break;
+                    case '2':
+                        toInstantiate = wall_2;
+                        break;
+                    case '3':
+                        toInstantiate = wall_3;
+                        break;
+                    case '4':
+                        toInstantiate = wall_4;
+                        break;
+                    case '-':
+                        toInstantiate = wall_Viertelgeviertstrich;
+                        break;
+                    case '_':
+                        toInstantiate = wall__;
                         break;
                     case '.':
-                        toInstantiate = floors[Random.Range(0, floors.Length)];
+                        toInstantiate = floor;
+                        break;
+                    case 'a':
+                        toInstantiate = regal_a;
+                        break;
+                    case 'b':
+                        toInstantiate = regal_b;
+                        break;
+                    case 'c':
+                        toInstantiate = regal_c;
+                        break;
+                    case 'd':
+                        toInstantiate = regal_d;
                         break;
                     case 'P':
-                        toInstantiate = floors[Random.Range(0, floors.Length)];
+                        toInstantiate = floor;
                         Instantiate(player, new Vector3(x, y, 0f), Quaternion.identity);
                         break;
-                    case 'X':
-                        toInstantiate = floors[Random.Range(0, floors.Length)];
+                    case 'B':
+                        toInstantiate = floor;
                         Instantiate(exit, new Vector3(x, y, 0f), Quaternion.identity);
                         break;
-                    case 'E':
-                        toInstantiate = floors[Random.Range(0, floors.Length)];
-                        Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector3(x, y, 0f), Quaternion.identity);
+                    case 'X':
+                        toInstantiate = floor;
+                        Instantiate(enemies, new Vector3(x, y, 0f), Quaternion.identity);
                         break;
                 }
 

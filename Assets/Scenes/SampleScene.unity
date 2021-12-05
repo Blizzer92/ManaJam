@@ -341,19 +341,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 409484685}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &409484685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1158,6 +1146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MenuScreen: {fileID: 1546661126}
   UICamara: {fileID: 5367520228318362109}
+  startGameBT: {fileID: 409484684}
   mapManager: {fileID: 0}
   playerCanMove: 1
   level: -1
@@ -1179,14 +1168,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 50
   width: 50
-  floors:
-  - {fileID: 8816402890290932854, guid: b61a9ccef22674b30b5d826cb84779b5, type: 3}
-  walls:
-  - {fileID: 8975087756667153348, guid: 53b7ce0a45f824c7ea229eca0a210a7a, type: 3}
-  enemies:
-  - {fileID: 3193951387843849479, guid: 5385a242d675a7f4bacb34d2b8f4454b, type: 3}
+  wall_l: {fileID: 1664795676122591826, guid: 1491a625d0e077340969e9e474fc1f48, type: 3}
+  wall_L: {fileID: 6196918743587355963, guid: 46792170c3676ea4ca41d39602e919c8, type: 3}
+  wall_r: {fileID: 379634726119438379, guid: bf1aee9870b0ea04e9d77f388fdbc873, type: 3}
+  wall_R: {fileID: 4912586904637612361, guid: fd6347a02c359cf48acd8b9e94de2e88, type: 3}
+  wall_1: {fileID: 5487016130916636400, guid: bd945907a4938d540ae0e3e1f1782959, type: 3}
+  wall_2: {fileID: 7628635581626229281, guid: de757a74803f96c40a7c13d72acce43f, type: 3}
+  wall_3: {fileID: 5507205996491277014, guid: ebc86217adc590646b110d4a704dc424, type: 3}
+  wall_4: {fileID: 2560672753687617421, guid: f8dee5e6204e34b499a0e14278b57b8c, type: 3}
+  wall_Viertelgeviertstrich: {fileID: 8073508093152034602, guid: 6e20e13dcf92f874087c83c614f16acb, type: 3}
+  wall__: {fileID: 7826126948356445748, guid: 3b6c35e2289127e4b998d114d570b01a, type: 3}
+  floor: {fileID: 8816402890290932854, guid: b61a9ccef22674b30b5d826cb84779b5, type: 3}
+  regal_a: {fileID: 6706094323057133601, guid: 870ea544922cbd24ab29f6fd08c63c18, type: 3}
+  regal_b: {fileID: 8137651905334014655, guid: d8a5c478db2d13145b362a63211ed00f, type: 3}
+  regal_c: {fileID: 9151535084215741402, guid: b8dd3e32737c84641a668b0f17e42f5f, type: 3}
+  regal_d: {fileID: 7069611981086248938, guid: 6073a4fd99adeeb4c8ef7c24cfd78b40, type: 3}
   player: {fileID: 4595057013536371770, guid: 05a01116f620f8941ba7e14070d39dd6, type: 3}
   exit: {fileID: 6365560518647693443, guid: 6b5b5a794c8ce4379af5fb60fa02f70a, type: 3}
+  enemies: {fileID: 3193951387843849479, guid: 5385a242d675a7f4bacb34d2b8f4454b, type: 3}
 --- !u!4 &8963962514158467827
 Transform:
   m_ObjectHideFlags: 0
